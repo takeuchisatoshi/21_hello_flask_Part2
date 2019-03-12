@@ -1,6 +1,6 @@
 import random
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -19,6 +19,18 @@ def dice():
 @app.route("/greet/<username>", methods=["GET"])
 def greet(username):
     return render_template("greet.html", name=username)
+
+
+@app.route("/form", methods=["GET"])
+def show_form():
+    return render_template("form.html")
+
+
+@app.route("/post_name", methods=["POST"])
+def request_post():
+    # print(request.method)
+    username = request.form["username"]
+    return f"こんにちは{username}さん"
 
 
 if __name__ == '__main__':
