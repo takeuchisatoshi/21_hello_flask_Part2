@@ -10,10 +10,15 @@ def index():
     return render_template("index.html", message="Hi! hachimantai!")
 
 
-@app.route("/", methods=["GET"])
+@app.route("/dice", methods=["GET"])
 def dice():
     result = random.randint(1, 6)
     return render_template("dice.html", result=result)
+
+
+@app.route("/greet/<username>", methods=["GET"])
+def greet(username):
+    return render_template("greet.html", name=username)
 
 
 if __name__ == '__main__':
